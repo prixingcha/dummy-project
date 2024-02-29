@@ -22,14 +22,33 @@ youtube = build('youtube', 'v3', developerKey=API)
 
 results = []
 
+
+# channel_response = youtube.channels().list(
+#             part="brandingSettings,contentDetails,contentOwnerDetails,id,localizations,snippet,statistics,status,topicDetails",
+#             id= ",".join(channel_ids)
+#         ).execute()
+
+# res = json.dumps(channel_response, indent=4, ensure_ascii=False)
+
+
+# print(res)
+
+# exit()
+
 for CHANNEL_ID in channel_ids:
     result = {}
     
     try:
         channel_response = youtube.channels().list(
-            part="snippet,statistics",
+            part="brandingSettings,contentDetails,contentOwnerDetails,id,localizations,snippet,statistics,status,topicDetails",
             id=CHANNEL_ID
         ).execute()
+    
+        
+        print(json.dumps(channel_response, indent=4, ensure_ascii=False))
+        
+        
+        continue
 
         if 'items' in channel_response and len(channel_response['items']) > 0:
             channel = channel_response['items'][0]
@@ -72,19 +91,6 @@ for CHANNEL_ID in channel_ids:
                                     for match in [re.search(r'(\d+)H', duration),
                                                     re.search(r'(\d+)M', duration),
                                                     re.search(r'(\d+)S', duration)]]
-
-
-
-
-        # "🎥": "737,000",
-        # "📅": 2009,
-        # "🌍": "IN",
-        # "📝": "Boss Pe Kiya Bada Prank 😂 | RJ Praveen | Prank Call | Online Shopping Scam 😅 | Comedy Video",
-        # "🔗": "https://www.youtube.com/watch?v=liR6t8n11i8",
-        # "👍": "1,400",
-        # "👎": 0,
-        # "👁": "19,984",
-        # "🕑": "00:03:23"s
                     stats = stats_response['items'][0]['statistics']
                     total_likes = int(stats.get('likeCount', 0))
                     total_dislikes = int(stats.get('dislikeCount', 0))
