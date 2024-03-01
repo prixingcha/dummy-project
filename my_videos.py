@@ -25,5 +25,5 @@ for item in channels_response['items']:
     print(f"Subscribed to: {title}")
 
 # Shutdown the OAuth server gracefully
-oauth_server = flow._oauth2_inst._server
-oauth_server.shutdown()
+# oauth_server = flow._oauth2_inst._server
+# oauth_server.shutdown()
