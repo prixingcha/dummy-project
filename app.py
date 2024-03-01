@@ -8,7 +8,7 @@ import re
 from emoji import emojis
 
 load_dotenv()
-API = os.getenv('GOOGLE-API-KEY')
+API = os.getenv('GOOGLE_API_KEY')
 
 class YouTubeChannelMonitor:
     def __init__(self, api_key, channel_ids_file):
@@ -21,7 +21,7 @@ class YouTubeChannelMonitor:
 
     def load_channel_ids(self, file_path):
         with open(file_path) as f:
-            return json.load(f)['first_names']
+            return json.load(f)['channel_id_list']
 
     def get_channel_info(self, channel_id):
         try:
