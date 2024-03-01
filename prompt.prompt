@@ -1,0 +1,4 @@
+need to make some changes, i just figured out that we don't have to get_channel_info one by one instead we can pass the channel id as comma separated string list  in the id argument of the following youtube.channel() call:
+  channel_response = self.youtube.channels().list( part="brandingSettings,contentDetails,contentOwnerDetails,id,localizations,snippet,statistics,status,topicDetails",
+                id=channel_id
+            ).execute()
