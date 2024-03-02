@@ -1,0 +1,23 @@
+{
+    "snippet": {
+    "title": "RJ PRAVEEN",
+    "description": "We Believe in Clean & Harmless Comedy And That is What Our Channel Promises. Hope You Will Enjoy Our Comedy, Banter Amongst Friends And Colleagues Through Our Chiggy Series, Le Panga, Kuch Log Hote Hain Etc Etc. ",
+    "customUrl": "@rjpraveen"
+ }
+}
+
+
+
+
+
+"snippet": {
+    "publishedAt": "2024-03-01T15:10:21.191498Z",
+    "title": "Backyard Maine",
+    "description": "Thanks for stopping by!  I'm John, I was an industrial electrician for 40 years and spent my last 10 years employed as an electrical engineer for a multi billion dollar corporation.On this channel I'll share some of the skills that I have learned over a long career as well as some DIY tasks that I take on around the home. I'm now enjoying retirement and running this youtube channel as a hobby. If you like the content let me know in the comments and be sure to subscribe and hit that bell so you won't miss my next upload. \n\nThanks again,\nJohn. (Backyard Maine)",
+    "resourceId": {
+        "kind": "youtube#channel",
+        "channelId": "UCdOuZ0bxeSxA8ZAHttc0U-w"
+    },
+
+channel_name = ['snippet']['title']
+channel_id = ['snippet']['resourceId']["channelId"]

@@ -1,0 +1,33 @@
+import json
+from googleapiclient.discovery import build
+from dotenv import load_dotenv
+import os
+
+# Replace 'YOUR_API_KEY' with your actual API key
+
+load_dotenv()
+API_KEY = os.getenv('GOOGLE_API_KEY')
+
+# Channel ID for the channel you want to fetch the name for
+channel_id =  "UCwHcAD2W-VitvrmzLT3xE0Q"
+
+youtube = build('youtube', 'v3', developerKey=API_KEY)
+
+# Request the channel information
+channel_response = youtube.channels().list(
+    part="brandingSettings,contentDetails,contentOwnerDetails,id,localizations,snippet,statistics,status,topicDetails",
+    id=channel_id
+).execute()
+x = json.dumps(channel_response, indent=4, ensure_ascii=True)
+print(x)
+exit()
+
+# Extract the channel name from the response
+channel_name = channel_response['items'][0]['snippet']['title']
+
+
+
+print(f"Channel Name: {channel_name}")
+
+json.dumps(channel_response['items'][0]['snippet'], indent=4, ensure_ascii=True)
+
