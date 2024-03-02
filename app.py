@@ -12,16 +12,25 @@ API = os.getenv('GOOGLE_API_KEY')
 
 class YouTubeChannelMonitor:
     def __init__(self, api_key, channel_ids_file):
+        
+        # self.full_subscribe_list = self.load_full_subscribe_list(channel_ids_file)
+        
         self.api_key = api_key
-        self.channel_ids = self.load_channel_ids(channel_ids_file)
+        self.channel_ids = self.load_full_subscribe_list(channel_ids_file)
         self.youtube = build('youtube', 'v3', developerKey=self.api_key)
         self.current_datetime = datetime.utcnow()
         self.previous_datetime = self.current_datetime - timedelta(hours=24)
         self.results = []
 
-    def load_channel_ids(self, file_path):
-        with open(file_path) as f:
-            return json.load(f)['channel_id_list']
+    # def load_channel_ids(self, file_path):
+    #     with open(file_path) as f:
+    #         return json.load(f)['channel_id_list']
+        
+        
+        
+    def load_full_subscribe_list(self, file_path):
+        with open(file_path, 'r') as file:
+            return file.read().strip()[1:-1].split(', ')
 
     def get_channel_info(self, channel_id):
         try:
@@ -114,6 +123,7 @@ class YouTubeChannelMonitor:
 
     def monitor_channels(self):
         for channel_id in self.channel_ids:
+            channel_id = channel_id[1:-1]
             result = self.process_channel(channel_id)
             if result:
                 self.results.append(result)
@@ -123,5 +133,7 @@ class YouTubeChannelMonitor:
         print(results_json)
 
 # Example usage
-monitor = YouTubeChannelMonitor(API, 'youtube-channel-id.json')
+monitor = YouTubeChannelMonitor(API, 'subscribe_list.txt')
+# print(monitor.channel_ids[0])
+
 monitor.monitor_channels()
